@@ -35,4 +35,7 @@ app.post('/convert', function(req, res, next) {
   res.send('done');
 })
 
-app.listen(3000);
+
+app.listen(process.env.PORT || 3000, function() {
+  console.log(`Express server listening on port ${this.address().port} in ${app.settings.env} mode`);
+});
