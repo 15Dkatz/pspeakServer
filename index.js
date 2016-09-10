@@ -37,7 +37,7 @@ app.post('/convert', function(req, res, next) {
     console.log(err);
   })
 
-  path = `${__dirname}/text.png`;
+  path = `${__dirname}/public/text.png`;
   setTimeout(function() {
     tesseract.process(path, function(err, text) {
       if (err) {
