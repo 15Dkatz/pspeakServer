@@ -2,16 +2,24 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var fs = require('fs');
-// var nodecr = require('nodecr');
 var tesseract = require('node-tesseract');
+var firebase = require('firebase');
 
-// change
+var config = {
+    apiKey: "AIzaSyCa1TSayY_Fqn9nrTXU8WqVwQSjdBF5haQ",
+    authDomain: "pspeakapp.firebaseapp.com",
+    databaseURL: "https://pspeakapp.firebaseio.com",
+    storageBucket: "",
+};
+
+var firebaseApp = firebase.initializeApp(config);
+var textRef = firebase.database().ref();
+
 
 app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-// app.use(bodyParser.json({limit: '50mb'}));
 
 app.use(bodyParser.json({limit: '50mb'}));
 
@@ -37,7 +45,6 @@ app.post('/convert', function(req, res, next) {
 
   let path = `${__dirname}/photo.jpeg`;
 
-
   // wish this had a promise
   require('fs').writeFile(path, binaryData, 'binary', function(err) {
     console.log(err);
@@ -50,19 +57,13 @@ app.post('/convert', function(req, res, next) {
         console.error(err);
       } else {
         console.log('text', text);
+        textRef.update({text});
       }
     })
-  }, 1000); //reduce this number later!!!!
+  }, 100); //reduce this number later!!!!
 
   res.send('done');
 })
-
-// app.get('/photo', function(req, res, next) {
-  // let photo = require('./photo.jpeg');
-  // console.log('photo', photo);
-  // res.json({photo: 'photo'});
-  // res.sendFile(`${__dirname}/photo.jpeg`)
-// })
 
 
 
