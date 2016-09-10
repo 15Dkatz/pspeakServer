@@ -5,6 +5,7 @@ var fs = require('fs');
 var nodecr = require('nodecr');
 var tesseract = require('node-tesseract');
 
+// change
 
 app.use(bodyParser.urlencoded({
   extended: true
