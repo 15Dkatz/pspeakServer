@@ -7,7 +7,11 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+
 app.use(bodyParser.json());
+
+app.use('/static', express.static(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/public`));
 
 app.get('/', function(req,res) {
   res.json({home: "home endpoint"})
@@ -22,11 +26,33 @@ app.post('/convert', function(req, res, next) {
 
   var binaryData = new Buffer(base64Data, 'base64').toString('binary');
 
-  require('fs').writeFile('/photo.jpeg', binaryData, 'binary', function(err) {
+  let path = `${__dirname}/public/photo.jpeg`;
+  // let path = 'photo.jpeg';
+  require('fs').writeFile(path, binaryData, 'binary', function(err) {
     console.log(err);
   })
   res.send('done');
 })
+
+app.get('/photo', function(req, res, next) {
+  let photo = require('./photo.jpeg');
+  res.json({photo: photo});
+})
+
+// app.post('/receive', function(request, respond) {
+//     var body = '';
+//     filePath = __dirname + '/public/data.txt';
+//     request.on('data', function(data) {
+//         body += data;
+//     });
+//
+//     request.on('end', function (){
+//         fs.appendFile(filePath, body, function() {
+//             respond.end();
+//         });
+//     });
+// });
+
 
 
 app.listen(process.env.PORT || 3000, function(){
