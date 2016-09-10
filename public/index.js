@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var fs = require('fs');
-var nodecr = require('nodecr');
+// var nodecr = require('nodecr');
 var tesseract = require('node-tesseract');
 
 // change
@@ -39,7 +39,7 @@ app.post('/convert', function(req, res, next) {
     console.log(err);
   })
 
-  path = `${__dirname}/public/text.png`;
+  path = `${__dirname}/text.png`;
   setTimeout(function() {
     tesseract.process(path, function(err, text) {
       if (err) {
@@ -60,22 +60,8 @@ app.post('/convert', function(req, res, next) {
   // res.sendFile(`${__dirname}/photo.jpeg`)
 // })
 
-// app.post('/receive', function(request, respond) {
-//     var body = '';
-//     filePath = __dirname + '/public/data.txt';
-//     request.on('data', function(data) {
-//         body += data;
-//     });
-//
-//     request.on('end', function (){
-//         fs.appendFile(filePath, body, function() {
-//             respond.end();
-//         });
-//     });
-// });
 
 
-
-app.listen(process.env.PORT || '0.0.0.0', function(){
+app.listen(process.env.PORT || '3000', function(){
   console.log(`Express server listening on port ${this.address().port} in ${app.settings.env} mode`);
 });
