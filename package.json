@@ -12,6 +12,8 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "multer": "^1.2.0"
+    "multer": "^1.2.0",
+    "node-tesseract": "^0.2.7",
+    "nodecr": "0.0.5"
   }
 }
