@@ -11,12 +11,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+// app.use(bodyParser.json({limit: '50mb'}));
+
+app.use(bodyParser.json({limit: '50mb'}));
+
 
 app.use(bodyParser.json());
 
 app.use('/static', express.static(`${__dirname}/public`));
 // app.use(express.static(`${__dirname}/static`));
-
+// new release
 app.get('/', function(req,res) {
   res.json({home: "home endpoint"})
 });
@@ -39,7 +43,7 @@ app.post('/convert', function(req, res, next) {
     console.log(err);
   })
 
-  path = `${__dirname}/text.png`;
+  // path = `${__dirname}/text.png`;
   setTimeout(function() {
     tesseract.process(path, function(err, text) {
       if (err) {
@@ -48,7 +52,7 @@ app.post('/convert', function(req, res, next) {
         console.log('text', text);
       }
     })
-  }, 1000);
+  }, 1000); //reduce this number later!!!!
 
   res.send('done');
 })
