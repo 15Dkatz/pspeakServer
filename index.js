@@ -22,6 +22,7 @@ app.get('/', function(req,res) {
 });
 
 app.post('/convert', function(req, res, next) {
+  'use strict';
   console.log('convert the stuff!');
   console.log('req.body', req.body);
   var baseImg = `data:image/jpeg;base64,${req.body.base64}`
