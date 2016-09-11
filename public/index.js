@@ -6,6 +6,7 @@ var tesseract = require('node-tesseract');
 var firebase = require('firebase');
 var Translate = require('@google-cloud/translate');
 // var ISO6391 = require('iso-639-1');
+// access: http://69.164.217.188:3000/
 
 var config = {
     apiKey: "AIzaSyCa1TSayY_Fqn9nrTXU8WqVwQSjdBF5haQ",
@@ -80,8 +81,11 @@ app.post('/translate', function(req, res, next) {
     if (language == 'german') {
       language = 'de'
     }
-    if (language == 'filipino') {
-      language = 'tl'
+    if (language == 'korean') {
+      language = 'ko'
+    }
+    if (language == 'hindi') {
+      language = 'hi'
     }
 
     console.log('into this language', language);
