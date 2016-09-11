@@ -61,6 +61,7 @@ app.post('/convert', function(req, res, next) {
 })
 
 app.post('/translate', function(req, res, next) {
+  // translate endpoint!
   // use the req to recognize what language you need to translate to
   // use req to eventually recognize the language you want to translate FROM
   textRef.once('value', function(data) {
@@ -107,7 +108,7 @@ app.post('/translate', function(req, res, next) {
     })
   })
   // translate the text from firebase and resave it as the translated text
-})
+});
 
 
 
