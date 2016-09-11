@@ -4,7 +4,7 @@ var app = express();
 var fs = require('fs');
 var tesseract = require('node-tesseract');
 var firebase = require('firebase');
-var Translate = require('@google-cloud/translate');
+// var Translate = require('@google-cloud/translate');
 // var ISO6391 = require('iso-639-1');
 
 var config = {
@@ -59,7 +59,7 @@ app.post('/convert', function(req, res, next) {
 
   res.send('done');
 })
-// 
+//
 // app.post('/translate', function(req, res, next) {
 //   // translate endpoint!
 //   // use the req to recognize what language you need to translate to
